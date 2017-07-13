@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.3/css/bulma.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+        <title>nippo</title>
+    </head>
+    <body>
+        <div class="container" id="app">
+            <h1 class="title">日報</h1>
+
+            <h2 class="subtitle">
+                お疲れ様です。日報は一日を振り返る大切な機会です。ゆっくりと思い出して書いてみてください。
+            </h2>
+
+            <div id="nippo">
+                <h2 class="subtitle">今日は {{ today }}です。</h2> 
+                <textarea v-model="content"></textarea>
+                <button v-if="is_editmode" v-on:click="editItem()">編集</button>
+                <button v-else v-on:click="addItem()">投稿</button>
+                <ul>
+                    <li v-for="(item, index) in items">
+                        {{ item.today }}
+                        {{ item.content }}
+                        <button v-on:click="deleteItem(index)">削除</button>
+                        <button v-on:click="editPrepare(index)">編集</button>
+                    </li>
+                </ul>
+            </div>
+
+            <div align="center">nippo</div>
+        </div>
+        <script>
+            new Vue({
+                el: '#nippo',
+                data: {
+                    today: moment().format('YYYY年MM月DD日'), 
+                    items: [],
+                    content: '',
+                    is_editmode: false,
+                    is_editnumber: 0
+                },
+                methods: {
+                    addItem: function(){
+                        this.items.push({
+                            today: moment().format('YYYY年MM月DD日'), 
+                            content: this.content
+                        });
+                    },
+                    deleteItem: function(index){
+                        Vue.delete( this.items, index );
+                    },
+                    editPrepare: function(index){
+                        this.is_editmode = true;
+                        this.is_editnumber = index;
+                    },
+                    editItem: function(){
+                        this.items[this.is_editnumber].content = this.content;
+                        this.is_editmode = false;
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
+

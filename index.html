@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <!-- Vue.jsと連携したHTMLコードを書く場所 -->
+            {{ message }}
+            <!-- 双方向バインディング -->
+            <input type="text" v-model="message">
+            <!-- v-for ディレクティブ -->
+            <ul>
+                <li v-for="item in items">
+                    {{ item.title }} 
+                    {{ item.detail }} 
+                </li>
+            </ul>
+            <button v-on:click="push()">おして！{{ message }}</button>
+        </div>
+
+        <div id="app2">
+            <p v-if="isButtonPushed">ボタンがおされたよ</p>
+            <p v-else>ボタンをおしてみない？</p>
+            <button v-on:click="push()">おして！</button>
+        </div>
+
+
+        <script>
+            // JavaScriptコードを書く場所
+
+            //----------------------------------------------------------------
+            new Vue({
+                el: '#app',
+                data: {
+                    message: 'Hello world!',
+                    items: [
+                        { title: 'PHP', detail: "hoge" },
+                        { title: 'hoge', detail: "fuga" },
+                        { title: 'fuga', detail: "tettere-" },
+                        { title: 'piyo', detail: "hoge" }
+                    ]
+                },
+                created: function(){
+                    //setTimeout( function(){ alert('XXX'); }, 5000 );
+                },
+                methods: {
+                    push: function(){
+                        this.message = 'OK!';
+                    },
+                }
+            });
+
+            //----------------------------------------------------------------
+            new Vue({
+                el: '#app2',
+                data: {
+                    isButtonPushed: false
+                },
+                methods: {
+                    push: function(){
+                        this.isButtonPushed = true;
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
+
