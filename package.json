@@ -1,0 +1,24 @@
+{
+  "name": "vue_handson",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager . ElectronTraining --platform=darwin --overwrite"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/piyoppi/vuejs_playground.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/piyoppi/vuejs_playground/issues"
+  },
+  "homepage": "https://github.com/piyoppi/vuejs_playground#readme",
+  "devDependencies": {
+    "electron": "^1.6.11",
+    "electron-packager": "^8.7.2"
+  }
+}

@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <button v-on:click="push()">{{ count }}</button>
+        </div>
+
+
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    count: 0,
+                },
+                methods: {
+                    push: function(){
+                        this.count++;
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
+
