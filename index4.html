@@ -7,7 +7,9 @@
     </head>
     <body>
         <div id="app">
-            <button v-on:click="push()">{{ count }}</button>
+            <input type="text" v-model="message">
+            <div>{{ message }}</div>
+            <button v-on:click="push">{{ count }}</button>
         </div>
 
 
@@ -15,7 +17,8 @@
             new Vue({
                 el: '#app',
                 data: {
-                    count: 0,
+                    message: "",
+                    count: 0
                 },
                 methods: {
                     push: function(){
